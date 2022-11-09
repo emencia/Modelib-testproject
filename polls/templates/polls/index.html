@@ -2,38 +2,56 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Polls Index page</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+              rel="stylesheet"
+              integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+              crossorigin="anonymous">
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+                crossorigin="anonymous"
+                defer></script>
+
         <style>
-            div.poll-question {
-                border: 1px solid black;
+            div.card {
                 float: left;
                 margin: 0.5rem;
-                padding: 0rem 1rem;
             }
         </style>
     </head>
     <body>
         <!-- This is a comment -->
-        <h1>List of polls</h1>
-        <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua.
-        </p>
-        <div class="poll-question">
-            <h2>Best movie?</h2>
-            <ul>
-                <li>Choice 1</li>
-                <li>Choice 2</li>
-                <li>Choice 3</li>
-            </ul>
-        </div>
-        <div class="poll-question">
-            <h2>Best book?</h2>
-            <ul>
-                <li>Choice 1</li>
-                <li>Choice 2</li>
-                <li>Choice 3</li>
-            </ul>
+        <div class="container-fluid">
+            <h1>List of polls</h1>
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua.
+            </p>
+
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Best movie?</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item">Choice 1</li>
+                        <li class="list-group-item">Choice 2</li>
+                        <li class="list-group-item">Choice 3</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Best book?</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item">Choice 1</li>
+                        <li class="list-group-item">Choice 2</li>
+                        <li class="list-group-item">Choice 3</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </body>
 </html>
