@@ -31,27 +31,21 @@
             incididunt ut labore et dolore magna aliqua.
             </p>
 
+            {% for question in view.questions %}
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">Best movie?</h5>
+                    <h5 class="card-title">{{ question }}</h5>
                     <ul class="list-group">
-                        <li class="list-group-item">Choice 1</li>
-                        <li class="list-group-item">Choice 2</li>
-                        <li class="list-group-item">Choice 3</li>
+                        {% for choice in question.choice_set.all %}
+                        <li class="list-group-item">
+                            <span title="{{ choice.choice_text }}">{{ choice.choice_text|truncatechars:24 }}</span>
+                            <span style="float: right">{{ choice.votes }}</span>
+                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
-
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Best book?</h5>
-                    <ul class="list-group">
-                        <li class="list-group-item">Choice 1</li>
-                        <li class="list-group-item">Choice 2</li>
-                        <li class="list-group-item">Choice 3</li>
-                    </ul>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </body>
 </html>
