@@ -13,6 +13,10 @@
     }
 {% endblock %}
 
+{% block extrahead %}
+    <script src="https://cdn.plot.ly/plotly-2.16.1.min.js"></script>
+{% endblock %}
+
 {% block content %}
     <h1>List of polls</h1>
     <p>
@@ -38,4 +42,22 @@
         </div>
         {% endfor %}
     </div>
+
+    <div id="tester" style="width: 600px; height: 400px;"></div>
+    <script>
+        let x = ["Apples", "Oranges", "Bananas"]
+        let y = ["5", "10", "5"]
+
+        let data = [
+            {
+                histfunc: "sum",
+                y: y,
+                x: x,
+                type: "histogram",
+                name: "sum",
+            }
+        ]
+
+        Plotly.newPlot('tester', data);
+    </script>
 {% endblock %}
