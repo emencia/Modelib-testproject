@@ -4,7 +4,6 @@
 
 {% block style %}
     div.card {
-        float: left;
         margin: 0.5rem;
     }
 
@@ -21,20 +20,22 @@
     incididunt ut labore et dolore magna aliqua.
     </p>
 
-    {% for question in view.questions %}
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">{{ question }}</h5>
-            <ul class="list-group">
-                {% for choice in question.choice_set.all %}
-                <li class="list-group-item">
-                    <span title="{{ choice.choice_text }}">{{ choice.choice_text|truncatechars:24 }}</span>
-                    <span style="float: right">{{ choice.votes }}</span>
-                </li>
-                {% endfor %}
-            </ul>
-            <a href="{% url 'polls:vote' question.id %}" class="card-link">Vote</a>
+    <div class="d-flex">
+        {% for question in view.questions %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ question }}</h5>
+                <ul class="list-group">
+                    {% for choice in question.choice_set.all %}
+                    <li class="list-group-item">
+                        <span title="{{ choice.choice_text }}">{{ choice.choice_text|truncatechars:24 }}</span>
+                        <span style="float: right">{{ choice.votes }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'polls:vote' question.id %}" class="card-link">Vote</a>
+            </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 {% endblock %}
