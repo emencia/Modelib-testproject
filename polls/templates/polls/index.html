@@ -2,17 +2,6 @@
 
 {% block title %}Polls Index page{% endblock %}
 
-{% block style %}
-    div.card {
-        margin: 0.5rem;
-    }
-
-    div.card a.card-link {
-        float: right;
-        margin-top: 1rem;
-    }
-{% endblock %}
-
 {% block extrahead %}
     <script src="https://cdn.plot.ly/plotly-2.16.1.min.js"></script>
 {% endblock %}
@@ -26,7 +15,7 @@
 
     <div class="d-flex">
         {% for question in view.questions %}
-        <div class="card" style="width: 18rem;">
+        <div class="card m-1" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">{{ question }}</h5>
                 <ul class="list-group">
@@ -37,7 +26,14 @@
                     </li>
                     {% endfor %}
                 </ul>
-                <a href="{% url 'polls:vote' question.id %}" class="card-link">Vote</a>
+                <div class="d-flex justify-content-between mt-3">
+                    <label class="d-inline-flex gap-1">
+                        <input class="form-check-input" type="radio" name="plot" value="{{ question.pk }}"
+                               onclick="plot(this.value)">
+                        Plot
+                    </label>
+                    <a href="{% url 'polls:vote' question.id %}" class="card-link">Vote</a>
+                </div>
             </div>
         </div>
         {% endfor %}
@@ -73,7 +69,5 @@
                 histogram(x, y);
             }
         }
-
-        plot(1); // FIXME The pk is hardcoded
     </script>
 {% endblock %}
