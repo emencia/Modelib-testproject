@@ -1,5 +1,7 @@
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, FormView, TemplateView
+from django.views.generic import DetailView, FormView, TemplateView, View
 
 # Create your views here.
 from .models import Question
@@ -33,3 +35,21 @@ class VoteView(FormView, DetailView):
     def form_invalid(self, form):
         self.object = self.get_object()
         return super().form_invalid(form)
+
+
+class GetDataView(View):
+
+    def get(self, request, pk):
+        obj = get_object_or_404(Question, pk=pk)
+
+        choices = []
+        for choice in obj.choice_set.all():
+            choices.append({
+                'choice_text': choice.choice_text,
+                'votes': choice.votes,
+            })
+
+        return JsonResponse({
+            'question_text': obj.question_text,
+            'choices': choices,
+        })

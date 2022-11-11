@@ -45,19 +45,35 @@
 
     <div id="tester" style="width: 600px; height: 400px;"></div>
     <script>
-        let x = ["Apples", "Oranges", "Bananas"]
-        let y = ["5", "10", "5"]
+        function histogram(x, y) {
+            let data = [
+                {
+                    histfunc: "sum",
+                    y: y,
+                    x: x,
+                    type: "histogram",
+                    name: "sum",
+                }
+            ]
 
-        let data = [
-            {
-                histfunc: "sum",
-                y: y,
-                x: x,
-                type: "histogram",
-                name: "sum",
+            Plotly.newPlot('tester', data);
+        }
+
+        async function plot(pk) {
+            let response = await fetch(`/polls/get-data/${pk}`);
+            if (response.ok) {
+                let data = await response.json();
+                let x = [];
+                let y = [];
+                for (let choice of data.choices) {
+                    x.push(choice.choice_text);
+                    y.push(choice.votes);
+                }
+
+                histogram(x, y);
             }
-        ]
+        }
 
-        Plotly.newPlot('tester', data);
+        plot(1); // FIXME The pk is hardcoded
     </script>
 {% endblock %}
